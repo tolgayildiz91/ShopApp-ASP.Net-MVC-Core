@@ -10,7 +10,7 @@ namespace ShopApp.Business.Abstract
     public interface IProductService
     {
         List<Product> GetAll();
-        List<Product> GetProductsByCategory(string category);
+        List<Product> GetProductsByCategory(string category, int page,int pageSize);
         Product GetById(int id);
         Product GetProductDetails(int id);
         void Create(Product entity);
