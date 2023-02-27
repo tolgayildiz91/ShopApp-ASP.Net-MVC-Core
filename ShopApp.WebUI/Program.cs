@@ -29,26 +29,15 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
+app.MapControllerRoute(
+    name: "products",
+     pattern: "products/{category?}",
+    defaults: new { controller = "Shop", action = "List" });
+
 //Default hali
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-//app.UseMvc(routes =>
-//{
-//    routes.MapRoute(
-//         name: "products",
-//         template: "products/{category?}",
-//         defaults: new { controller = "Shop", action = "List" }
-//        );
-//});
-
-//app.UseMvc(routes =>
-//{
-//    routes.MapRoute(
-//         name: "default",
-//         template: "{controller=Home}/{action=Index}/{id?}"
-//        );
-//});
 
 app.Run();

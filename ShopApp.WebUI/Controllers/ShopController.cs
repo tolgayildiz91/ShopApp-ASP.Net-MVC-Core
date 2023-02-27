@@ -19,11 +19,13 @@ namespace ShopApp.WebUI.Controllers
             return View();
         }
 
-        public IActionResult List()
+        
+        public IActionResult List(string category, int page=1)
         {
+            const int pageSize = 3;
             return View(new ProductListModel()
             {
-                Products = _productService.GetAll(),
+                Products = _productService.GetProductsByCategory(category,page,pageSize),
 
             });
         }
