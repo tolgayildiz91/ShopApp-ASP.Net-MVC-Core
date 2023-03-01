@@ -8,10 +8,10 @@
 
 <hr />
 
+
+<form asp-controller="Admin" asp-action="EditProduct" method="post">
 <div class="row">
     <div class="col-md-8">
-
-        <form asp-controller="Admin" asp-action="Edit" method="post">
             <input type="hidden" name="Id" value="@Model.Id" />
             <div class="form-group row">
                 <label asp-for="Name" class="col-md-2 col-form-label"></label>
@@ -48,9 +48,21 @@
                     <button type="submit" value="Save Product" class="btn btn-primary">Save Product</button>
                 </div>
             </div>
-
-        </form>
-
     </div>
-
+    <div class="col-md-4">
+            @foreach (var item in (List<Category>)ViewBag.Categories)
+            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" 
+                    name="categoryIds"
+                    value="@item.Id"
+                    type="checkbox"
+                    id="category@(item.Id)" 
+                    @(Model.SelectedCategories.Any(i=>i.Id==item.Id)?"checked":"")>
+                    <label class="custom-control-label" for="category@(item.Id)">@item.Name</label>
+                </div>
+            }
+    </div>
 </div>
+
+</form>
