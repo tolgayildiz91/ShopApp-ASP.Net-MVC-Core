@@ -9,6 +9,7 @@ namespace ShopApp.WebUI.Models
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
+        public List<Category> SelectedCategories { get; set; }
 
     }
 }
