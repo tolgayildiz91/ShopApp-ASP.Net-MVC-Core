@@ -8,6 +8,7 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
 }
 
 <h1>Create Product</h1>
@@ -55,13 +56,6 @@
                 <div class="col-md-10">
                     <input asp-for="Price" value="@Model.Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="SelectedCategories" class="col-md-2 col-form-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="SelectedCategories" value="telefon"class="form-control" />
-                    <span asp-validation-for="SelectedCategories" class="text-danger"></span>
                 </div>
             </div>
             <br />
