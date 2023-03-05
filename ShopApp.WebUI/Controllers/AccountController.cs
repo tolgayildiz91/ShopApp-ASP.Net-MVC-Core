@@ -74,12 +74,10 @@ namespace ShopApp.WebUI.Controllers
         }
 
 
-        public IActionResult Login(string ReturnUrl = null)
+        public IActionResult Login()
         {
-            return View(new LoginModel()
-            {
-                ReturnUrl = ReturnUrl
-            });
+            
+            return View(new LoginModel());
         }
 
         [HttpPost]
@@ -108,7 +106,7 @@ namespace ShopApp.WebUI.Controllers
 
             if (result.Succeeded)
             {
-                return Redirect(model.ReturnUrl ?? "~/");
+                return RedirectToAction("index", "home");
             }
 
             ModelState.AddModelError("", "Email veya parola yanlış");

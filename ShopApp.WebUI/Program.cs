@@ -39,7 +39,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 
     options.User.RequireUniqueEmail = true;
 
-    options.SignIn.RequireConfirmedEmail = true;
+    options.SignIn.RequireConfirmedEmail = false;
     options.SignIn.RequireConfirmedPhoneNumber = false;
 
 }).AddEntityFrameworkStores<ApplicationIdentityDbContext>()
@@ -58,7 +58,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie = new CookieBuilder
     {
         HttpOnly = true,
-        Name = "ShopApp.Security.Cookie",
+        Name = ".ShopApp.Security.Cookie",
         SameSite = SameSiteMode.Strict
     };
 });
@@ -68,28 +68,14 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddScoped<IProductDal, EfCoreProductDal>();
 builder.Services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
 builder.Services.AddScoped<ICartDal, EfCoreCartDal>();
+builder.Services.AddScoped<IOrderDal, EfCoreOrderDal>();
 
 builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICartService, CartManager>();
+builder.Services.AddScoped<IOrderService, OrderManager>();
 
 
-//builder.Services.AddMvc(config =>
-//{
-//    var policy = new AuthorizationPolicyBuilder()
-//    .RequireAuthenticatedUser()
-//    .Build();
-//    config.Filters.Add(new AuthorizeFilter(policy));
-//});
-
-
-//builder.Services.AddAuthentication(
-//    CookieAuthenticationDefaults.AuthenticationScheme)
-//    .AddCookie(x =>
-//    {
-//        x.LoginPath = "/account/login";
-
-//    });
 
 
 builder.Services.AddMvc();
@@ -104,7 +90,7 @@ if (!app.Environment.IsDevelopment())
 
 
 app.UseStaticFiles();
-//app.CustomStaticFiles();
+app.CustomStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.UseAuthentication();
@@ -134,8 +120,13 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "cart",
-     pattern: "cart}",
+     pattern: "cart",
     defaults: new { controller = "Cart", action = "Index" });
+
+app.MapControllerRoute(
+    name: "checkout",
+     pattern: "checkout",
+    defaults: new { controller = "Cart", action = "Checkout" });
 
 //Default hali
 app.MapControllerRoute(

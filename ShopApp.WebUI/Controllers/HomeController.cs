@@ -7,25 +7,17 @@ namespace ShopApp.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private IProductService _productService;
-        private ICategoryService _categoryService;
-
-        public HomeController(ILogger<HomeController> logger, IProductService productService)
+        public HomeController(IProductService productService)
         {
-            _logger = logger;
             _productService = productService;
- 
         }
-
-      
 
         public IActionResult Index()
         {
             return View(new ProductListModel()
             {
-                Products= _productService.GetAll(),
-  
+                Products = _productService.GetAll()
             });
         }
 
