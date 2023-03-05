@@ -11,14 +11,11 @@ namespace ShopApp.Business.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-       
+        private ICategoryDal _categoryDal;
         public CategoryManager(ICategoryDal categoryDal)
         {
             _categoryDal = categoryDal;
         }
-
-        private ICategoryDal _categoryDal;
-
         public void Create(Category entity)
         {
             _categoryDal.Create(entity);
@@ -27,6 +24,11 @@ namespace ShopApp.Business.Concrete
         public void Delete(Category entity)
         {
             _categoryDal.Delete(entity);
+        }
+
+        public void DeleteFromCategory(int categoryId, int productId)
+        {
+            _categoryDal.DeleteFromCategory(categoryId, productId);
         }
 
         public List<Category> GetAll()
@@ -39,19 +41,14 @@ namespace ShopApp.Business.Concrete
             return _categoryDal.GetById(id);
         }
 
-        public void Update(Category entity)
-        {
-            _categoryDal.Update(entity);
-        }
-
         public Category GetByIdWithProducts(int id)
         {
             return _categoryDal.GetByIdWithProducts(id);
         }
 
-        public void DeleteFromCategory(int categoryId, int productId)
+        public void Update(Category entity)
         {
-            _categoryDal.DeleteFromCategory(categoryId, productId);
+            _categoryDal.Update(entity);
         }
     }
 }

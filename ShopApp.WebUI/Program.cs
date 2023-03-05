@@ -66,9 +66,12 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
 builder.Services.AddScoped<IProductDal, EfCoreProductDal>();
-builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
+builder.Services.AddScoped<ICartDal, EfCoreCartDal>();
+
+builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<ICartService, CartManager>();
 
 
 //builder.Services.AddMvc(config =>
@@ -79,7 +82,7 @@ builder.Services.AddScoped<ICategoryService, CategoryManager>();
 //    config.Filters.Add(new AuthorizeFilter(policy));
 //});
 
-builder.Services.AddMvc();
+
 //builder.Services.AddAuthentication(
 //    CookieAuthenticationDefaults.AuthenticationScheme)
 //    .AddCookie(x =>
@@ -89,7 +92,7 @@ builder.Services.AddMvc();
 //    });
 
 
-
+builder.Services.AddMvc();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -129,12 +132,17 @@ app.MapControllerRoute(
      pattern: "products/{category?}",
     defaults: new { controller = "Shop", action = "List" });
 
+app.MapControllerRoute(
+    name: "cart",
+     pattern: "cart}",
+    defaults: new { controller = "Cart", action = "Index" });
+
 //Default hali
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-SeedIdentity.Seed(userManager, roleManager, Configuration).Wait();
+//SeedIdentity.Seed(userManager, roleManager, Configuration).Wait();
 
 
 
