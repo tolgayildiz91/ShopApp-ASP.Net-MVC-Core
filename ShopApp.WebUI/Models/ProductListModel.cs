@@ -2,7 +2,7 @@
 
 namespace ShopApp.WebUI.Models
 {
-    public class PageInfo
+    public class PagingInfo
     {
         public int TotalItems { get; set; }
         public int ItemsPerPage { get; set; }
@@ -11,16 +11,12 @@ namespace ShopApp.WebUI.Models
 
         public int TotalPages()
         {
-
             return (int)Math.Ceiling((decimal)TotalItems / ItemsPerPage);
         }
-
     }
-
     public class ProductListModel
     {
-
-        public PageInfo PageInfo { get; set; }
+        public PagingInfo PagingInfo { get; set; }
         public List<Product> Products { get; set; }
     }
 }

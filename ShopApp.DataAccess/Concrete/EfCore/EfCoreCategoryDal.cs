@@ -17,7 +17,6 @@ namespace ShopApp.DataAccess.Concrete.EfCore
             using (var context = new ShopContext())
             {
                 var cmd = @"delete from ProductCategory where ProductId=@p0 And CategoryId=@p1";
-                //context.Database.ExecuteSqlCommand(cmd, productId, categoryId);
                 context.Database.ExecuteSqlRaw(cmd, productId, categoryId);
             }
         }
@@ -33,7 +32,5 @@ namespace ShopApp.DataAccess.Concrete.EfCore
                         .FirstOrDefault();
             }
         }
-
-
     }
 }

@@ -8,7 +8,7 @@ namespace ShopApp.Business.Abstract
 {
     public interface IValidator<T>
     {
-        public string ErrorMessage { get; set; }
+        string ErrorMessage { get; set; }
         bool Validate(T entity);
     }
 }

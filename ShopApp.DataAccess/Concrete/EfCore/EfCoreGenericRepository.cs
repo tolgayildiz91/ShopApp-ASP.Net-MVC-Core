@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 namespace ShopApp.DataAccess.Concrete.EfCore
 {
     public class EfCoreGenericRepository<T, TContext> : IRepository<T>
-         where T : class
-         where TContext : DbContext, new()
+        where T : class
+        where TContext : DbContext, new()
     {
         public virtual void Create(T entity)
         {
@@ -67,4 +67,3 @@ namespace ShopApp.DataAccess.Concrete.EfCore
         }
     }
 }
-

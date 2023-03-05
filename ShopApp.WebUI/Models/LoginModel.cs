@@ -4,15 +4,14 @@ namespace ShopApp.WebUI.Models
 {
     public class LoginModel
     {
-        [Required]
+        //[Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        //[Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public string ReturnUrl { get; set; }
-
+        //public string ReturnUrl { get; set; }
     }
 }
