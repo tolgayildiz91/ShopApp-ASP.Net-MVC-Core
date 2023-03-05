@@ -24,13 +24,13 @@ namespace ShopApp.DataAccess.Concrete.EfCore
 
         public Category GetByIdWithProducts(int id)
         {
-            using(var context = new ShopContext())
+            using (var context = new ShopContext())
             {
                 return context.Categories
-                    .Where(i => i.Id == id)
-                    .Include(i => i.ProductCategories)
-                    .ThenInclude(i => i.Product)
-                    .FirstOrDefault();
+                        .Where(i => i.Id == id)
+                        .Include(i => i.ProductCategories)
+                        .ThenInclude(i => i.Product)
+                        .FirstOrDefault();
             }
         }
 

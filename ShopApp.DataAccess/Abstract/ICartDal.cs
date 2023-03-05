@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace ShopApp.DataAccess.Abstract
 {
-    public interface IOrderDal : IRepository<Order>
+    public interface ICartDal : IRepository<Cart>
     {
-
+        Cart GetByUserId(string userId);
+        void DeleteFromCart(int cartId, int productId);
     }
 }

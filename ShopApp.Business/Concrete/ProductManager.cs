@@ -12,14 +12,13 @@ namespace ShopApp.Business.Concrete
 {
     public class ProductManager : IProductService
     {
-
         private IProductDal _productDal;
+
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
         }
 
-  
 
         public bool Create(Product entity)
         {
@@ -28,22 +27,17 @@ namespace ShopApp.Business.Concrete
                 _productDal.Create(entity);
                 return true;
             }
-            else
-            {
-                return false;
-            }
-          
+            return false;
         }
 
         public void Delete(Product entity)
         {
             _productDal.Delete(entity);
-
         }
 
         public List<Product> GetAll()
         {
-            return _productDal.GetAll().ToList();
+            return _productDal.GetAll();
         }
 
         public Product GetById(int id)
@@ -66,9 +60,9 @@ namespace ShopApp.Business.Concrete
             return _productDal.GetProductDetails(id);
         }
 
-        public List<Product> GetProductsByCategory(string category,int page,int pageSize)
+        public List<Product> GetProductsByCategory(string category, int page, int pageSize)
         {
-            return _productDal.GetProductsByCategory(category,page,pageSize);
+            return _productDal.GetProductsByCategory(category, page, pageSize);
         }
 
         public void Update(Product entity)
@@ -81,20 +75,19 @@ namespace ShopApp.Business.Concrete
             _productDal.Update(entity, categoryIds);
         }
 
-        public string ErrorMessage { get; set ; }
+        public string ErrorMessage { get; set; }
+
         public bool Validate(Product entity)
         {
             var isValid = true;
 
-            if(string.IsNullOrEmpty(entity.Name))
+            if (string.IsNullOrEmpty(entity.Name))
             {
-                ErrorMessage += "Ürün İsmi Girmelisiniz";
+                ErrorMessage += "ürün ismi girmelisiniz";
                 isValid = false;
             }
-        
 
             return isValid;
         }
-
     }
 }

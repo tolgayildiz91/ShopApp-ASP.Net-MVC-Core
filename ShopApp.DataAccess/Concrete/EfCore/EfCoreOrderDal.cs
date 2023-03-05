@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShopApp.DataAccess.Concrete.EfCore
 {
-    public class EfCoreOrderDal:EfCoreGenericRepository<Order,ShopContext>,IOrderDal
+    public class EfCoreOrderDal : EfCoreGenericRepository<Order, ShopContext>, IOrderDal
     {
     }
 }
